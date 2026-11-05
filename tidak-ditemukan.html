@@ -1,0 +1,43 @@
+<!--
+  File: tidak-ditemukan.html
+  Deskripsi: Halaman saat pencarian tidak menemukan buku.
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pencarian Tidak Ditemukan - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1010">
+</head>
+<body class="search-not-found-page">
+  <div class="app-shell search-not-found-shell">
+    <!-- Menu samping -->
+    <aside class="sidebar">
+      <div class="sidebar-avatar" id="sidebarAvatar" title="Akun">SA</div>
+      <nav class="sidebar-nav">
+        <button class="nav-item" type="button" onclick="location.href='pengguna.html'" title="Beranda">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+        </button>
+        <button class="nav-item" type="button" onclick="location.href='favorit.html'" title="Love">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Isi utama halaman -->
+    <main class="main-content search-not-found-main">
+      <div class="search-not-found-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <h1>Buku yang anda ketik tidak ada di pencarian</h1>
+        <p id="searchQueryText">Coba cari dengan judul, penulis, atau kategori lain.</p>
+        <button class="btn btn-primary btn-sm" type="button" id="backBtn">Kembali ke Beranda</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Skrip halaman -->
+  <script src="js/auth.js?rev1010"></script>
+  <script src="js/search-not-found-page.js?rev1010"></script>
+</body>
+</html>

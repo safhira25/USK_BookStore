@@ -1,0 +1,49 @@
+<!--
+  File: detail-buku.html
+  Deskripsi: Halaman rincian satu buku.
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Buku - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1010">
+</head>
+<body class="detail-page">
+  <div class="app-shell detail-shell" id="appShell">
+    <!-- Menu samping -->
+    <aside class="sidebar" id="detailSidebar"></aside>
+
+    <!-- Isi utama halaman -->
+    <main class="main-content detail-main">
+      <nav class="detail-breadcrumb" id="breadcrumb">
+        <button type="button" id="backBtn" class="breadcrumb-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Kembali
+        </button>
+        <span class="breadcrumb-sep">/</span>
+        <span id="breadcrumbCategory">Kategori</span>
+        <span class="breadcrumb-sep">/</span>
+        <span id="breadcrumbTitle" class="breadcrumb-current">Detail Buku</span>
+      </nav>
+
+      <div id="detailContent" class="detail-content"></div>
+
+      <div id="detailError" class="detail-error hidden">
+        <div class="detail-error-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <h2>Buku tidak ditemukan</h2>
+          <p>Buku yang Anda cari mungkin sudah dihapus atau tidak tersedia.</p>
+          <button class="btn btn-primary btn-sm" id="errorBackBtn" type="button">Kembali ke Beranda</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Skrip halaman -->
+  <script src="js/auth.js?rev1010"></script>
+  <script src="js/data.js?rev1010"></script>
+  <script src="js/book-detail-page.js?rev1010"></script>
+</body>
+</html>

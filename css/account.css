@@ -1,0 +1,1212 @@
+/*
+ * File: css/account.css
+ * Deskripsi: Tampilan khusus halaman akun pengguna.
+ */
+/* Tampilan halaman akun */
+body.account-page {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(30, 58, 95, 0.05), transparent 42%),
+    radial-gradient(ellipse at 100% 100%, rgba(184, 148, 90, 0.1), transparent 38%),
+    var(--bg);
+}
+
+.account-shell {
+  grid-template-columns: 72px 1fr;
+  min-height: 100vh;
+}
+
+.account-main {
+  padding: 28px 48px 56px;
+  width: 100%;
+  max-width: 1440px;
+}
+
+.account-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.account-header-copy {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.account-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  color: #1a365d;
+}
+
+.account-header-note {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 280px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.account-page .breadcrumb-back {
+  background: var(--surface);
+  border: 1px solid rgba(30, 58, 95, 0.08);
+  box-shadow: 0 6px 18px rgba(45, 42, 38, 0.05);
+}
+
+.account-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.account-menu-panel {
+  background: var(--surface);
+  border: 1px solid rgba(232, 226, 216, 0.9);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(45, 42, 38, 0.07);
+  position: sticky;
+  top: 24px;
+}
+
+.account-profile {
+  text-align: center;
+  padding: 36px 24px 24px;
+  background:
+    linear-gradient(180deg, rgba(30, 58, 95, 0.05), transparent 70%),
+    var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.account-avatar-wrap {
+  position: relative;
+  width: 96px;
+  margin: 0 auto 14px;
+}
+
+.account-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fcd34d, #f97316);
+  color: white;
+  display: grid;
+  place-items: center;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 1px rgba(184, 148, 90, 0.45), 0 10px 24px rgba(249, 115, 22, 0.22);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.account-avatar:hover {
+  transform: scale(1.03);
+}
+
+.account-avatar.has-photo {
+  background: var(--border);
+  overflow: hidden;
+  padding: 0;
+}
+
+.account-avatar.has-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.account-avatar-edit {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1a365d;
+  color: white;
+  border: 2px solid white;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.account-avatar-edit svg {
+  width: 13px;
+  height: 13px;
+}
+
+.account-photo-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.account-page .account-photo-actions .btn-sm {
+  width: auto;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.account-profile h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.28rem;
+  margin-bottom: 4px;
+  color: #1a365d;
+}
+
+.account-profile p {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+
+.account-member-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #f8f1e4;
+  color: #8a6a32;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.account-member-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c4a35a;
+}
+
+.account-menu {
+  padding: 14px;
+}
+
+.account-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+
+.account-menu-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: var(--surface-soft);
+  flex-shrink: 0;
+}
+
+.account-menu-item svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+}
+
+.account-menu-item:hover {
+  background: #faf6ef;
+}
+
+.account-menu-item.active {
+  background: #1a365d;
+  color: white;
+  box-shadow: 0 10px 22px rgba(26, 54, 93, 0.22);
+}
+
+.account-menu-item.active .account-menu-icon {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.account-menu-item.active svg {
+  color: white;
+}
+
+.account-menu-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 8px;
+}
+
+.account-logout {
+  color: var(--danger);
+}
+
+.account-logout .account-menu-icon {
+  background: #feecec;
+}
+
+.account-logout svg {
+  color: var(--danger);
+}
+
+.account-logout:hover {
+  background: #fff5f5;
+}
+
+.account-content-panel {
+  background: var(--surface);
+  border: 1px solid rgba(232, 226, 216, 0.9);
+  border-radius: 28px;
+  padding: 32px 36px 36px;
+  box-shadow: 0 18px 50px rgba(45, 42, 38, 0.07);
+  min-height: 540px;
+}
+
+.account-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.account-count {
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #f8f1e4;
+  color: #8a6a32;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.account-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b8945a;
+  margin-bottom: 6px;
+}
+
+.account-content-panel h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  color: #1a365d;
+  margin-bottom: 6px;
+}
+
+.account-content-desc {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 24px;
+  line-height: 1.55;
+}
+
+.account-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.account-stat {
+  background: linear-gradient(180deg, #fbf8f3, #f7f2ea);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+
+.account-stat strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  color: #1a365d;
+  margin-bottom: 2px;
+}
+
+.account-stat span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.account-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.account-filter {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.account-filter:hover,
+.account-filter.is-active {
+  background: #1a365d;
+  border-color: #1a365d;
+  color: #fff;
+}
+
+.account-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-order-card {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: linear-gradient(90deg, #fff, #fbf8f3);
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.account-order-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(26, 54, 93, 0.16);
+  box-shadow: 0 12px 28px rgba(45, 42, 38, 0.07);
+}
+
+.account-order-cover {
+  width: 64px;
+  height: 84px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #efe8dc;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 16px rgba(45, 42, 38, 0.1);
+}
+
+.account-order-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-order-cover span {
+  font-family: 'Playfair Display', serif;
+  color: #1a365d;
+  font-size: 1.1rem;
+}
+
+.account-order-meta {
+  min-width: 0;
+}
+
+.account-order-id {
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1a365d;
+  background: #eef3f8;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.account-order-meta h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-order-meta p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.account-order-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.account-order-total {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #1a365d;
+}
+
+.account-order-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-page .status-badge {
+  padding: 6px 11px;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+.account-track-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #1a365d;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.account-track-link:hover {
+  text-decoration: underline;
+}
+
+.account-wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+.wish-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #fff, #fbf8f3);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.wish-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(26, 54, 93, 0.16);
+  box-shadow: 0 18px 36px rgba(45, 42, 38, 0.1);
+}
+
+.wish-cover {
+  position: relative;
+  background: #efe8dc;
+}
+
+.wish-cover img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+.wish-love {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #c2410c;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(45, 42, 38, 0.12);
+}
+
+.wish-love svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wish-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 16px 18px;
+}
+
+.wish-cat {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b8945a;
+}
+
+.wish-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: #1a365d;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wish-author {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.wish-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.wish-meta strong {
+  color: #1a365d;
+  font-size: 0.92rem;
+}
+
+.wish-meta span {
+  color: #b8945a;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.wish-cart {
+  margin-top: 8px;
+  width: 100%;
+  border: 1px solid rgba(26, 54, 93, 0.16);
+  background: #1a365d;
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wish-cart:hover {
+  background: #152c4d;
+}
+
+.account-empty {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--text-muted);
+}
+
+.account-empty-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  background: #f6f0e6;
+}
+
+.account-empty svg {
+  width: 32px;
+  height: 32px;
+  opacity: 0.55;
+}
+
+.account-empty p {
+  margin-bottom: 18px;
+}
+
+.account-empty .btn {
+  width: auto;
+  border-radius: 999px;
+  padding: 11px 22px;
+}
+
+.account-info-card,
+.account-about-card {
+  background:
+    linear-gradient(180deg, #fff, #fbf8f3);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 26px;
+  max-width: 560px;
+}
+
+.account-info-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b8945a;
+  margin-bottom: 18px;
+}
+
+.account-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.account-info-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: 18px;
+}
+
+.account-info-row span {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.account-info-row strong {
+  text-align: right;
+  line-height: 1.45;
+}
+
+.address-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.account-count {
+  display: inline-flex;
+  margin: 0;
+}
+
+.address-add-btn {
+  width: auto !important;
+  border-radius: 999px;
+  padding: 9px 16px;
+  box-shadow: none;
+}
+
+.address-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.address-card.is-default {
+  box-shadow: 0 16px 36px rgba(26, 54, 93, 0.12);
+}
+
+.address-badge.is-soft {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.address-form-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(26, 54, 93, 0.28);
+  backdrop-filter: blur(6px);
+}
+
+.address-form-overlay[hidden] {
+  display: none !important;
+}
+
+.address-form {
+  position: relative;
+  width: min(520px, 100%);
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 28px 24px;
+  box-shadow: 0 24px 60px rgba(45, 42, 38, 0.16);
+}
+
+.address-form h3 {
+  font-family: 'Playfair Display', serif;
+  color: #1a365d;
+  margin-bottom: 6px;
+}
+
+.address-form-note {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  margin-bottom: 18px;
+}
+
+.address-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 14px;
+}
+
+.address-form label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.address-form input,
+.address-form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: #fbf8f3;
+}
+
+.address-form textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+
+.address-default-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.address-default-check input {
+  width: auto;
+}
+
+.address-form .btn-primary {
+  width: 100%;
+  border-radius: 999px;
+  margin-top: 6px;
+}
+
+.address-card {
+  overflow: hidden;
+  max-width: none;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: 0 12px 32px rgba(45, 42, 38, 0.06);
+}
+
+.address-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.address-action {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #1a365d;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.address-action:hover {
+  background: #eef3f8;
+}
+
+.address-action.is-danger {
+  color: var(--danger);
+  border-color: #f3c6c6;
+}
+
+.address-action.is-danger:hover {
+  background: #fff5f5;
+}
+
+.address-card-map {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(232, 201, 122, 0.28), transparent 40%),
+    linear-gradient(135deg, #1a365d, #2b5876);
+  color: #fff;
+}
+
+.address-pin {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.address-pin svg {
+  width: 22px;
+  height: 22px;
+}
+
+.address-badge {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.address-card-map p {
+  opacity: 0.82;
+  font-size: 0.88rem;
+}
+
+.address-card-body {
+  padding: 22px 24px 24px;
+}
+
+.address-card-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #1a365d;
+  margin-bottom: 6px;
+}
+
+.address-phone,
+.address-line {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.address-line {
+  margin-top: 8px;
+}
+
+.address-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.address-action {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #1a365d;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.account-payment-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  max-width: 720px;
+}
+
+.pay-card {
+  min-height: 188px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  border-radius: 24px;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 18px 36px rgba(26, 54, 93, 0.18);
+}
+
+.pay-card.is-primary {
+  background: linear-gradient(135deg, #1a365d 0%, #2b5876 100%);
+}
+
+.pay-card.is-secondary {
+  background: linear-gradient(135deg, #3d2b1f 0%, #6b4f3a 100%);
+}
+
+.pay-card-top,
+.pay-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pay-chip {
+  width: 38px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #e8c97a, #c4a35a);
+}
+
+.pay-card .payment-number {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.pay-card .payment-type {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  margin-bottom: 4px;
+}
+
+.account-payment-item {
+  position: relative;
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 22px;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 16px 32px rgba(26, 54, 93, 0.18);
+}
+
+.account-payment-item.is-primary {
+  background: linear-gradient(135deg, #1a365d 0%, #2b5876 100%);
+}
+
+.account-payment-item.is-secondary {
+  background: linear-gradient(135deg, #3d2b1f 0%, #6b4f3a 100%);
+}
+
+.account-payment-item .payment-type {
+  font-size: 0.75rem;
+  opacity: 0.78;
+  margin-bottom: 4px;
+}
+
+.account-payment-item .payment-number {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.account-payment-default {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.about-hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  align-items: center;
+  padding: 28px;
+  margin-bottom: 20px;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, #1a365d 0%, #2b5876 100%);
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(26, 54, 93, 0.2);
+}
+
+.about-hero-mark {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #f8f1e4;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+}
+
+.about-hero-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e4c98a;
+  margin-bottom: 6px;
+}
+
+.about-hero h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+}
+
+.about-hero p {
+  max-width: 520px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92rem;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.about-features article {
+  padding: 20px 18px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fff, #fbf8f3);
+}
+
+.about-features span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #b8945a;
+  margin-bottom: 10px;
+}
+
+.about-features h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: #1a365d;
+  margin-bottom: 8px;
+}
+
+.about-features p {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.about-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 14px 4px 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.account-about-card {
+  text-align: center;
+  max-width: 520px;
+}
+
+.account-about-logo {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 14px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  background: #1a365d;
+  color: #f8f1e4;
+  font-size: 1.8rem;
+}
+
+.account-about-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #1a365d;
+  margin-bottom: 10px;
+}
+
+.account-about-card p {
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.account-about-meta {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.active-account {
+  box-shadow: 0 0 0 3px #1a365d;
+}
+
+@media (max-width: 1100px) {
+  .account-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .account-header-note {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .account-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .account-menu-panel {
+    position: static;
+  }
+
+  .account-main {
+    padding: 22px 16px 40px;
+  }
+
+  .account-content-panel {
+    padding: 24px 18px;
+  }
+
+  .account-order-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+
+  .account-order-cover {
+    width: 52px;
+    height: 70px;
+  }
+
+  .account-order-side {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+@media (max-width: 900px) {
+  .address-form-grid,
+  .address-head-actions {
+    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,34 @@
+<!--
+  File: pembayaran-berhasil.html
+  Deskripsi: Halaman konfirmasi pembayaran berhasil.
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembayaran Berhasil - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1010">
+</head>
+<body class="success-page">
+  <div class="success-backdrop">
+    <div class="success-card">
+      <div class="success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h1>berhasil !</h1>
+      <p class="success-message">
+        Pembayaran Anda berhasil.<br>
+        Bukti pembayaran telah dikirim ke email Anda.
+      </p>
+      <p class="success-email" id="successEmail"></p>
+      <p class="success-order hidden" id="successOrder"></p>
+      <button type="button" class="success-btn" id="goBackBtn">Kembali</button>
+    </div>
+  </div>
+
+  <!-- Skrip halaman -->
+  <script src="js/auth.js?rev1010"></script>
+  <script src="js/payment-success-page.js?rev1010"></script>
+</body>
+</html>

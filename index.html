@@ -1,0 +1,93 @@
+<!--
+  File: index.html
+  Deskripsi: Halaman awal yang mengarahkan pengunjung sesuai peran akun.
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1013">
+  <script>
+    <!-- Jika sudah masuk, buka halaman sesuai peran akun. -->
+    const user = localStorage.getItem('usk_bookstore_auth');
+    if (user) {
+      try {
+        const parsed = JSON.parse(user);
+        window.location.href = parsed.role === 'admin' ? 'pengelola.html' : 'pengguna.html';
+      } catch (error) {
+        /* tampilkan landing */
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Menu samping -->
+    <aside class="sidebar">
+      <div class="sidebar-avatar has-photo" id="landingLogo" title="Masuk" role="button" tabindex="0">
+        <img src="assets/logo.png" alt="BookStore">
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" type="button" title="Beranda" aria-label="Beranda">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Isi utama halaman -->
+    <main class="main-content">
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <p class="welcome-greeting">Selamat datang di</p>
+          <h1>BookStore</h1>
+          <p class="welcome-desc">Temukan buku favoritmu. Masuk untuk mulai belanja, simpan keranjang, dan checkout.</p>
+        </div>
+        <div class="welcome-stats">
+          <div class="welcome-stat">
+            <span class="welcome-stat-value" id="statBooksCount">0</span>
+            <span class="welcome-stat-label">Buku Tersedia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-bar">
+        <div class="search-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Cari judul, penulis, atau kategori...">
+          <button class="btn btn-gradient btn-sm" id="searchBtn" type="button">Cari</button>
+        </div>
+        <div class="user-menu">
+          <a class="logout-btn" href="masuk.html">Masuk</a>
+          <a class="btn btn-primary btn-sm" href="daftar.html">Daftar</a>
+        </div>
+      </div>
+
+      <div class="categories" id="categories"></div>
+
+      <div class="section-header">
+        <div>
+          <h2 id="sectionTitle">Populer</h2>
+          <p class="section-subtitle" id="sectionSubtitle">Buku pilihan terbaik untukmu hari ini</p>
+        </div>
+        <div class="section-actions">
+          <button class="arrow-btn" id="prevBtn" type="button" aria-label="Sebelumnya">&lsaquo;</button>
+          <button class="arrow-btn" id="nextBtn" type="button" aria-label="Berikutnya">&rsaquo;</button>
+        </div>
+      </div>
+
+      <div class="book-scroll-wrap">
+        <div class="book-grid" id="bookGrid"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Skrip halaman -->
+  <script src="js/data.js?rev1013"></script>
+  <script src="js/book-card.js?rev1013"></script>
+  <script src="js/landing.js?rev1014"></script>
+</body>
+</html>

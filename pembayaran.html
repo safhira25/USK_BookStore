@@ -1,0 +1,48 @@
+<!--
+  File: pembayaran.html
+  Deskripsi: Halaman pembayaran dan pilihan cara transaksi.
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembayaran - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1016">
+</head>
+<body class="payment-page">
+  <div class="app-shell payment-shell" id="appShell">
+    <!-- Menu samping -->
+    <aside class="sidebar" id="paymentSidebar"></aside>
+
+    <!-- Isi utama halaman -->
+    <main class="main-content payment-main">
+      <!-- Judul bagian -->
+      <header class="payment-header">
+        <button type="button" class="pay-back" id="backBtn" aria-label="Kembali">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="pay-heading">
+          <h1>Pembayaran</h1>
+          <p>Selesaikan pembayaran pesanan BookStore kamu.</p>
+        </div>
+      </header>
+
+      <div id="paymentContent" class="pay-board"></div>
+
+      <div id="paymentError" class="detail-error hidden">
+        <div class="detail-error-box">
+          <h2>Pesanan tidak valid</h2>
+          <p>Silakan pilih buku terlebih dahulu.</p>
+          <button class="btn btn-primary btn-sm" id="errorBackBtn" type="button">Kembali ke Beranda</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Skrip halaman -->
+  <script src="js/auth.js?rev1016"></script>
+  <script src="js/data.js?rev1016"></script>
+  <script src="js/payment-page.js?rev1016"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+/*
+ * File: css/review.css
+ * Deskripsi: Tampilan ulasan dan bintang penilaian.
+ */
+.review-notice {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1200;
+  width: min(380px, calc(100vw - 32px));
+  display: none;
+  align-items: stretch;
+  border-radius: 20px;
+  background: #1a365d;
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(26, 54, 93, 0.28);
+  overflow: hidden;
+}
+
+.review-notice.is-visible {
+  display: flex;
+  animation: review-pop 0.28s ease;
+}
+
+.review-notice-body {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 12px 16px 18px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.review-notice-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.review-notice-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.review-notice strong {
+  display: block;
+  font-size: 0.98rem;
+  margin-bottom: 4px;
+}
+
+.review-notice p {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.86;
+}
+
+.review-notice-close,
+.review-modal-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.35rem;
+  line-height: 1;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.review-notice-close {
+  margin: 10px 10px 0 0;
+}
+
+.review-notice-close:hover,
+.review-modal-close:hover {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.review-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: none;
+  place-items: center;
+  padding: 24px;
+  background: rgba(214, 214, 245, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.review-overlay.is-open {
+  display: grid;
+}
+
+.review-card {
+  position: relative;
+  width: min(440px, 100%);
+  background: #f7f6ff;
+  border-radius: 28px;
+  padding: 44px 32px 28px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(80, 70, 140, 0.16);
+}
+
+.review-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #eceaf6;
+  color: #2d2a40;
+}
+
+.review-card h2 {
+  font-size: 1.45rem;
+  color: #2d2a40;
+  margin-bottom: 10px;
+}
+
+.review-card > p {
+  color: #8a869a;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.review-stars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.review-star {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: #d9d6e5;
+}
+
+.review-star svg {
+  width: 38px;
+  height: 38px;
+}
+
+.review-star.is-active {
+  color: #f5c400;
+}
+
+.review-card textarea {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  border: 0;
+  border-radius: 18px;
+  padding: 16px 18px;
+  background: #eceaf6;
+  box-shadow: inset 0 2px 8px rgba(80, 70, 140, 0.08);
+  color: #2d2a40;
+  margin-bottom: 18px;
+}
+
+.review-card textarea::placeholder {
+  color: #9c98ad;
+}
+
+.review-card textarea:focus {
+  outline: 2px solid rgba(245, 196, 0, 0.45);
+}
+
+.review-send {
+  min-width: 148px;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 28px;
+  background: #f5c400;
+  color: #2d2a26;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(245, 196, 0, 0.28);
+}
+
+.review-send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.review-error {
+  display: none;
+  color: #c2410c;
+  font-size: 0.8rem;
+  margin: -8px 0 14px;
+}
+
+.review-error.is-visible {
+  display: block;
+}
+
+.tracking-review-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 16px 0 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: #fff8df;
+  border: 1px solid #f0d57a;
+}
+
+.tracking-review-banner p {
+  color: #6b5420;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.account-review-btn {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: #f5c400;
+  color: #2d2a26;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.account-reviewed {
+  color: #8a6a32;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.admin-review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 8px 4px 24px;
+}
+
+.admin-review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.admin-review-card.is-unread {
+  cursor: pointer;
+  border-color: rgba(107, 92, 231, 0.28);
+  box-shadow: 0 10px 24px rgba(107, 92, 231, 0.08);
+}
+
+.admin-review-card.is-unread:hover,
+.admin-review-card.is-unread:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+  box-shadow: 0 14px 28px rgba(107, 92, 231, 0.14);
+}
+
+.admin-review-card.is-read {
+  opacity: 0.72;
+  background: #f7f4ef;
+}
+
+.admin-review-status {
+  display: inline-flex;
+  margin-top: 14px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.admin-review-card.is-unread .admin-review-status {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.admin-review-card.is-read .admin-review-status {
+  background: #e8efe4;
+  color: #3f6b38;
+}
+
+.admin-review-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.admin-review-card h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.admin-review-card .meta {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.admin-review-stars {
+  color: #f5c400;
+  letter-spacing: 1px;
+  font-size: 1.05rem;
+}
+
+.admin-review-card p {
+  margin-top: 12px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.admin-review-empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+@keyframes review-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .review-notice {
+    top: auto;
+    bottom: 92px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+  }
+}

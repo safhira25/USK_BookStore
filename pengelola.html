@@ -1,0 +1,484 @@
+<!--
+  File: pengelola.html
+  Deskripsi: Halaman pengelolaan toko untuk admin.
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - BookStore</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <link rel="stylesheet" href="css/style.css?v=1022">
+  <link rel="stylesheet" href="css/chat.css?v=1022">
+  <link rel="stylesheet" href="css/review.css?v=1022">
+</head>
+<body>
+  <div class="app-shell admin-shell">
+    <!-- Menu samping -->
+    <aside class="sidebar admin-sidebar">
+      <div class="admin-brand">
+        <div class="sidebar-avatar" id="adminAvatar">AD</div>
+        <div class="admin-brand-text">
+          <strong>Admin</strong>
+          <span>USK BookStore</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          <span>Dasbor</span>
+        </button>
+        <button class="nav-item" data-tab="books" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span>Kelola Buku</span>
+        </button>
+        <button class="nav-item" data-tab="categories" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/></svg>
+          <span>Kategori</span>
+        </button>
+        <button class="nav-item" data-tab="orders" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8V7l-3-3H6L3 7v1"/><path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/><path d="M16 12a4 4 0 0 1-8 0"/></svg>
+          <span>Pesanan</span>
+        </button>
+        <button class="nav-item" data-tab="reviews" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Ulasan</span>
+          <span class="nav-unread" id="reviewNavBadge">0</span>
+        </button>
+        <button class="nav-item" data-tab="users" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Pengguna</span>
+        </button>
+        <button class="nav-item" data-tab="messages" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Pesan</span>
+          <span class="nav-unread" id="chatNavBadge">0</span>
+        </button>
+        <button class="admin-logout" type="button" onclick="logout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Keluar
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Isi utama halaman -->
+    <main class="main-content">
+      <div id="tab-dashboard" class="admin-dashboard">
+        <div class="admin-header dash-hero">
+          <div>
+            <p class="dash-kicker">Ringkasan toko</p>
+            <h1 id="dashGreeting">Dasbor Admin</h1>
+            <p id="dashDate">Kelola katalog, pesanan, dan layanan pelanggan</p>
+          </div>
+          <div class="dash-actions">
+            <button class="dash-btn" type="button" data-goto="orders">Lihat pesanan</button>
+            <button class="dash-btn" type="button" data-goto="categories">Kelola kategori</button>
+            <button class="dash-btn dash-btn-primary" type="button" data-goto="books">Kelola katalog</button>
+          </div>
+        </div>
+
+        <div class="stats-grid dash-stats">
+          <article class="stat-card is-books">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div>
+              <div class="label">Total Buku</div>
+              <div class="value" id="statBooks">0</div>
+              <div class="change" id="statBooksHint">Katalog aktif</div>
+            </div>
+          </article>
+          <article class="stat-card is-orders">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 8V7l-3-3H6L3 7v1"/><path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg>
+            </div>
+            <div>
+              <div class="label">Total Pesanan</div>
+              <div class="value" id="statOrders">0</div>
+              <div class="change" id="statOrdersHint">Semua status</div>
+            </div>
+          </article>
+          <article class="stat-card is-revenue">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div class="label">Pendapatan</div>
+              <div class="value" id="statRevenue">Rp 0</div>
+              <div class="change">Pesanan selesai</div>
+            </div>
+          </article>
+          <article class="stat-card is-users">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="label">Pengguna</div>
+              <div class="value" id="statUsers">0</div>
+              <div class="change">Terdaftar</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dash-pills" id="dashPills"></div>
+
+        <div class="dash-charts">
+          <section class="flow-card">
+            <!-- Judul bagian -->
+            <header class="flow-head">
+              <h3>Aktivitas Pesanan</h3>
+              <div class="flow-legend">
+                <span><i class="dot is-done"></i> Selesai</span>
+                <span><i class="dot is-shipped"></i> Dikirim</span>
+                <span><i class="dot is-pending"></i> Menunggu</span>
+              </div>
+              <span class="flow-range">1 Tahun</span>
+            </header>
+            <div class="flow-body">
+              <div class="flow-chart" id="orderChart"></div>
+              <aside class="flow-summary" id="orderSummary"></aside>
+            </div>
+          </section>
+          <section class="flow-card">
+            <!-- Judul bagian -->
+            <header class="flow-head">
+              <h3>Pendapatan Admin</h3>
+              <div class="flow-legend">
+                <span><i class="dot is-done"></i> Masuk</span>
+                <span><i class="dot is-shipped"></i> Diproses</span>
+                <span><i class="dot is-pending"></i> Menunggu</span>
+              </div>
+              <span class="flow-range">Per bulan</span>
+            </header>
+            <div class="flow-body">
+              <div class="flow-chart" id="revenueChart"></div>
+              <aside class="flow-summary" id="revenueSummary"></aside>
+            </div>
+          </section>
+        </div>
+
+        <div class="admin-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Pesanan Terbaru</h3>
+              <button class="panel-link" type="button" data-goto="orders">Lihat semua</button>
+            </div>
+            <div class="panel-body dash-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Pelanggan</th>
+                    <th>Buku</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recentOrders"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Stok Rendah</h3>
+              <span class="panel-meta" id="lowStockCount">0 item</span>
+            </div>
+            <div class="panel-body" id="lowStock"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-books" class="hidden admin-page">
+        <div class="admin-header dash-hero">
+          <div>
+            <p class="dash-kicker">Katalog</p>
+            <h1>Kelola Buku</h1>
+            <p>Tambah, ubah, atau hapus buku dari katalog</p>
+          </div>
+        </div>
+        <div class="admin-toolbar">
+          <label class="admin-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" id="bookSearch" placeholder="Cari judul atau penulis...">
+          </label>
+          <span class="panel-meta" id="booksCount">0 buku</span>
+        </div>
+        <div class="admin-grid books-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Daftar Buku</h3>
+            </div>
+            <div class="panel-body dash-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Buku</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="booksTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3 id="bookFormTitle">Tambah Buku Baru</h3>
+            </div>
+            <div class="panel-body">
+              <form class="admin-form" id="bookForm">
+                <input type="hidden" id="bookId">
+                <div class="form-group">
+                  <label for="bookTitle">Judul Buku</label>
+                  <input type="text" id="bookTitle" required>
+                </div>
+                <div class="form-group">
+                  <label for="bookAuthor">Penulis</label>
+                  <input type="text" id="bookAuthor" required>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="bookCategory">Kategori</label>
+                    <select id="bookCategory" required></select>
+                  </div>
+                  <div class="form-group">
+                    <label for="bookStock">Stok</label>
+                    <input type="number" id="bookStock" min="0" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="bookPrice">Harga (IDR)</label>
+                  <input type="number" id="bookPrice" min="0" required>
+                </div>
+                <div class="form-group">
+                  <label for="bookCover">Sampul Buku</label>
+                  <p class="form-hint">Isi path/link gambar sampul (bukan judul buku). Contoh: <code>assets/covers/laskar-pelangi.png</code></p>
+                  <select id="bookCoverPick">
+                    <option value="">— Pilih sampul dari folder assets/covers —</option>
+                  </select>
+                  <input type="text" id="bookCover" placeholder="assets/covers/nama-file.png atau https://...">
+                  <label class="form-hint" for="bookCoverFile" style="margin-top:8px;display:block;">Atau unggah gambar dari komputer:</label>
+                  <input type="file" id="bookCoverFile" accept="image/*">
+                  <img class="cover-preview hidden" id="bookCoverPreview" alt="Pratinjau sampul">
+                </div>
+                <div class="admin-form-actions">
+                  <button type="submit" class="btn btn-primary">Simpan Buku</button>
+                  <button type="button" class="btn btn-secondary" id="cancelEdit" style="display:none;">Batal Ubah</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-categories" class="hidden admin-page">
+        <div class="admin-header dash-hero">
+          <div>
+            <p class="dash-kicker">Katalog</p>
+            <h1>Kategori Buku</h1>
+            <p>Tambah, ubah, atau hapus kategori buku</p>
+          </div>
+          <span class="panel-meta" id="categoriesCount">0 kategori</span>
+        </div>
+        <div class="admin-grid books-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Daftar Kategori</h3>
+            </div>
+            <div class="panel-body dash-table-wrap">
+              <p class="form-hint">CRUD kategori: tambah di form kanan, ubah/hapus lewat tombol Aksi.</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Jumlah Buku</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="categoriesTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3 id="categoryFormTitle">Tambah Kategori</h3>
+            </div>
+            <div class="panel-body">
+              <form class="admin-form" id="categoryForm">
+                <input type="hidden" id="categoryId">
+                <div class="form-group">
+                  <label for="categoryName">Nama Kategori</label>
+                  <p class="form-hint">Contoh: Ensiklopedia, Sejarah, Anak. Kategori baru langsung muncul di filter user.</p>
+                  <input type="text" id="categoryName" required placeholder="Contoh: Ensiklopedia">
+                </div>
+                <div class="admin-form-actions">
+                  <button type="submit" class="btn btn-primary">Simpan Kategori</button>
+                  <button type="button" class="btn btn-secondary" id="cancelCategoryEdit" style="display:none;">Batal Ubah</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-orders" class="hidden admin-page">
+        <div class="admin-header dash-hero">
+          <div>
+            <p class="dash-kicker">Transaksi</p>
+            <h1>Kelola Pesanan</h1>
+            <p>Lihat dan perbarui status pesanan pelanggan</p>
+          </div>
+          <span class="panel-meta" id="ordersCount">0 pesanan</span>
+        </div>
+        <div class="admin-toolbar" id="orderFilters">
+          <button class="dash-pill is-on" type="button" data-order-filter="all">Semua</button>
+          <button class="dash-pill is-pending" type="button" data-order-filter="pending">Menunggu</button>
+          <button class="dash-pill is-shipped" type="button" data-order-filter="shipped">Dikirim</button>
+          <button class="dash-pill is-done" type="button" data-order-filter="completed">Selesai</button>
+        </div>
+        <div class="panel">
+          <div class="panel-body dash-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID Pesanan</th>
+                  <th>Tanggal</th>
+                  <th>Pelanggan</th>
+                  <th>Buku</th>
+                  <th>Total</th>
+                  <th>Bukti</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-reviews" class="hidden admin-page">
+        <div class="admin-header dash-hero">
+          <div>
+            <p class="dash-kicker">Masukan</p>
+            <h1>Ulasan Pengguna</h1>
+            <p>Klik kartu ulasan untuk menandai sudah dibaca</p>
+          </div>
+          <span class="panel-meta" id="reviewCount">0 ulasan</span>
+        </div>
+        <div class="admin-toolbar" id="reviewFilters">
+          <button class="dash-pill is-on" type="button" data-review-filter="all">Semua</button>
+          <button class="dash-pill is-review" type="button" data-review-filter="unread">Belum dibaca</button>
+        </div>
+        <div id="reviewsList" class="admin-review-grid"></div>
+      </div>
+
+      <div id="tab-users" class="hidden admin-page">
+        <div class="admin-header dash-hero">
+          <div>
+            <p class="dash-kicker">Akun</p>
+            <h1>Kelola Pengguna</h1>
+            <p>Daftar semua pengguna terdaftar</p>
+          </div>
+          <span class="panel-meta" id="usersCount">0 pengguna</span>
+        </div>
+        <div class="panel">
+          <div class="panel-body dash-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pengguna</th>
+                  <th>Email</th>
+                  <th>Peran</th>
+                </tr>
+              </thead>
+              <tbody id="usersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-messages" class="hidden admin-chat-tab">
+        <div class="admin-inbox">
+          <!-- Menu samping -->
+          <aside class="inbox-sidebar">
+            <div class="inbox-sidebar-head">
+              <h2>Pesan</h2>
+              <p>Chat langsung dengan pengguna</p>
+              <div class="inbox-search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="inboxSearch" placeholder="Cari nama atau pesan...">
+              </div>
+            </div>
+            <div class="inbox-list" id="inboxList"></div>
+          </aside>
+          <section class="inbox-main">
+            <div class="inbox-empty" id="inboxEmpty">
+              <div class="chat-empty-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h3>Pilih percakapan</h3>
+              <p>Balas pesan pengguna di sini. Percakapan akan tersambung langsung ke kolom chat user.</p>
+            </div>
+            <div class="inbox-thread hidden" id="inboxThread">
+              <!-- Judul bagian -->
+              <header class="inbox-thread-head">
+                <div class="chat-peer">
+                  <div class="chat-peer-avatar-wrap">
+                    <div class="chat-peer-avatar" id="inboxUserAvatar">U</div>
+                    <span class="chat-status-dot" aria-hidden="true"></span>
+                  </div>
+                  <div>
+                    <h3 id="inboxUserName">Pengguna</h3>
+                    <p class="inbox-user-status"><span id="inboxUserEmail">Pengguna BookStore</span> · Aktif sekarang</p>
+                  </div>
+                </div>
+                <span class="inbox-live-pill">Online</span>
+              </header>
+              <div class="chat-messages" id="inboxMessages"></div>
+              <div class="inbox-composer-wrap">
+                <div class="inbox-quick" id="inboxQuick">
+                  <button type="button" data-msg="Pesanan Anda sedang kami proses. Mohon ditunggu ya.">Pesanan diproses</button>
+                  <button type="button" data-msg="Terima kasih konfirmasinya. Ada yang bisa kami bantu lagi?">Terima kasih</button>
+                  <button type="button" data-msg="Mohon kirim nomor pesanan agar kami bisa cek lebih lanjut.">Minta nomor pesanan</button>
+                </div>
+                <form class="chat-input-wrap" id="inboxForm">
+                  <input type="text" id="inboxInput" placeholder="Balas pesan pengguna..." autocomplete="off">
+                  <button class="chat-send" type="submit" aria-label="Kirim balasan">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="proof-modal hidden" id="proofModal">
+    <div class="proof-modal-card">
+      <!-- Judul bagian -->
+      <header>
+        <div>
+          <h3>Bukti Pembayaran</h3>
+          <p id="proofMeta"></p>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="closeProofModal">Tutup</button>
+      </header>
+      <img id="proofImage" alt="Bukti bayar">
+    </div>
+  </div>
+
+  <!-- Skrip halaman -->
+  <script src="js/auth.js?v=1022"></script>
+  <script src="js/data.js?v=1022"></script>
+  <script src="js/chat.js?v=1022"></script>
+  <script src="js/admin.js?v=1022"></script>
+</body>
+</html>

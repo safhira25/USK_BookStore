@@ -1,0 +1,9 @@
+# Berkas sistem
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
