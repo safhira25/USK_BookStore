@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1010">
+</head>
+<body class="love-page">
+  <div class="app-shell love-shell">
+    <aside class="sidebar">
+      <div class="sidebar-avatar" id="sidebarAvatar" title="Akun">SA</div>
+      <nav class="sidebar-nav">
+        <button class="nav-item" type="button" onclick="location.href='user.html'" title="Beranda">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+        </button>
+        <button class="nav-item active" type="button" title="Love">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="main-content love-main">
+      <header class="love-header">
+        <button type="button" class="breadcrumb-back" id="backBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Kembali
+        </button>
+        <div>
+          <h1>Love</h1>
+          <p class="love-subtitle">Buku yang kamu sukai</p>
+        </div>
+      </header>
+
+      <div class="love-grid" id="loveContent"></div>
+    </main>
+  </div>
+
+  <script src="js/auth.js?rev1045"></script>
+  <script src="js/data.js?rev1045"></script>
+  <script src="js/book-card.js?rev1010"></script>
+  <script src="js/love-page.js?rev1010"></script>
+</body>
+</html>

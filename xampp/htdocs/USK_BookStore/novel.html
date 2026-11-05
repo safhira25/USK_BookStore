@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novel - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1010">
+</head>
+<body class="novel-page">
+  <div class="app-shell novel-shell">
+    <aside class="sidebar">
+      <div class="sidebar-avatar" id="sidebarAvatar" title="Akun">SA</div>
+      <nav class="sidebar-nav">
+        <button class="nav-item" type="button" onclick="location.href='user.html'" title="Beranda">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+        </button>
+        <button class="nav-item active" type="button" title="Novel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </button>
+        <button class="nav-item" type="button" onclick="location.href='love.html'" title="Love">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="main-content novel-main">
+      <header class="novel-header">
+        <button type="button" class="breadcrumb-back" id="backBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Kembali
+        </button>
+        <div>
+          <h1>Novel</h1>
+          <p class="novel-subtitle">Koleksi novel populer pilihan BookStore</p>
+        </div>
+      </header>
+
+      <div class="novel-grid" id="novelContent"></div>
+    </main>
+  </div>
+
+  <script src="js/auth.js?rev1045"></script>
+  <script src="js/data.js?rev1045"></script>
+  <script src="js/book-card.js?rev1010"></script>
+  <script src="js/novel-page.js?rev1010"></script>
+</body>
+</html>

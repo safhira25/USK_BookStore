@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1010">
+</head>
+<body class="checkout-page">
+  <div class="app-shell checkout-shell" id="appShell">
+    <aside class="sidebar" id="checkoutSidebar"></aside>
+
+    <main class="main-content checkout-main">
+      <header class="checkout-header">
+        <button type="button" class="breadcrumb-back" id="backBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Kembali
+        </button>
+        <h1>Pembayaran Pesanan</h1>
+      </header>
+
+      <div id="checkoutContent" class="checkout-grid"></div>
+
+      <div id="checkoutError" class="detail-error hidden">
+        <div class="detail-error-box">
+          <h2>Pesanan tidak valid</h2>
+          <p>Silakan pilih buku terlebih dahulu.</p>
+          <button class="btn btn-primary btn-sm" id="errorBackBtn" type="button">Kembali ke Beranda</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/auth.js?rev1046"></script>
+  <script src="js/data.js?rev1045"></script>
+  <script src="js/checkout-page.js?rev1010"></script>
+</body>
+</html>

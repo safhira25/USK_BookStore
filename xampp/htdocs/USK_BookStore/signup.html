@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1011">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <img src="assets/logo.png" alt="BookStore" class="auth-logo-icon">
+        <div>
+          <h1>BookStore</h1>
+          <p>Toko buku online terbaik</p>
+        </div>
+      </div>
+
+      <h2>Buat Akun</h2>
+      <p class="auth-subtitle">Daftar untuk mulai berbelanja buku favorit Anda</p>
+
+      <div id="alert" class="auth-alert"></div>
+
+      <form id="signupForm" autocomplete="off">
+        <div class="form-group">
+          <label for="name">Nama Lengkap</label>
+          <input type="text" id="name" name="signup-name" placeholder="Nama Lengkap" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="signup-email" placeholder="Email" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-field">
+            <input type="password" id="password" name="signup-password" placeholder="Password" autocomplete="new-password" required minlength="6">
+            <button class="password-toggle" type="button" aria-label="Tampilkan password" aria-pressed="false"></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Konfirmasi Password</label>
+          <div class="password-field">
+            <input type="password" id="confirmPassword" name="signup-confirm" placeholder="Ulangi Password" autocomplete="new-password" required>
+            <button class="password-toggle" type="button" aria-label="Tampilkan password" aria-pressed="false"></button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Daftar</button>
+      </form>
+
+      <p class="auth-footer">
+        Sudah punya akun? <a href="signin.html">Masuk di sini</a>
+        · <a href="index.html">Kembali ke beranda</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/auth.js?rev1045"></script>
+  <script>
+    const user = getCurrentUser();
+    if (user) {
+      window.location.href = user.role === 'admin' ? 'admin.html' : 'user.html';
+    }
+
+    const form = document.getElementById('signupForm');
+    const alertEl = document.getElementById('alert');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('need') === '1') {
+      alertEl.className = 'auth-alert success';
+      alertEl.textContent =
+        params.get('msg') ||
+        'Silakan buat akun terlebih dahulu untuk melanjutkan belanja.';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alertEl.className = 'auth-alert error';
+        alertEl.textContent = 'Password dan konfirmasi password tidak cocok.';
+        return;
+      }
+
+      const result = await signUp(name, email, password);
+      if (result.success) {
+        alertEl.className = 'auth-alert success';
+        alertEl.textContent = 'Pendaftaran berhasil! Mengalihkan ke halaman masuk...';
+        setTimeout(() => {
+          window.location.href = 'signin.html?registered=1';
+        }, 800);
+      } else {
+        alertEl.className = 'auth-alert error';
+        alertEl.textContent = result.message;
+      }
+    });
+  </script>
+</body>
+</html>
+

@@ -11,12 +11,15 @@ USK_BookStore/
 ├── css/                  Tampilan
 ├── js/                   Perilaku halaman
 ├── database/
-│   └── bookstore.sql     Cadangan database dari XAMPP
+│   └── bookstore.sql     Cadangan database yang bisa diimpor
+├── xampp/
+│   ├── htdocs/USK_BookStore/     Salinan proyek dari folder htdocs XAMPP
+│   └── mysql/data/bookstore/     Berkas tabel MySQL database bookstore
 ├── index.php             Pintu masuk lewat Apache
 └── *.html                Halaman toko
 ```
 
-Folder program XAMPP (Apache, MySQL, dan database proyek lain) tidak ikut di repositori ini. Yang disimpan adalah kode toko buku dan cadangan database `bookstore`.
+Folder `xampp/` diambil langsung dari instalasi XAMPP di komputer ini. Isinya proyek yang ada di `htdocs` dan berkas tabel database `bookstore`. Program Apache, PHP, dan MySQL tidak disalin: log Apache berukuran 111 MB, sedangkan GitHub menolak satu berkas di atas 100 MB. Database proyek lain yang ada di XAMPP juga tidak ikut.
 
 ## Menjalankan di XAMPP
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?rev1015">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-scene" aria-hidden="true">
+      <svg class="auth-float auth-float-star auth-float-star-a" viewBox="0 0 24 24"><path d="M12 1.5 13.8 8.2 20.5 10 13.8 11.8 12 18.5 10.2 11.8 3.5 10 10.2 8.2Z" fill="#f0a030"/></svg>
+      <svg class="auth-float auth-float-star auth-float-star-b" viewBox="0 0 24 24"><path d="M12 2 13.6 8.4 20 10 13.6 11.6 12 18 10.4 11.6 4 10 10.4 8.4Z" fill="#6b5ce7"/></svg>
+      <svg class="auth-float auth-float-star auth-float-star-c" viewBox="0 0 24 24"><path d="M12 3 13.2 8.8 19 10 13.2 11.2 12 17 10.8 11.2 5 10 10.8 8.8Z" fill="#ec4899"/></svg>
+    </div>
+    <div class="auth-card">
+      <div class="auth-logo">
+        <img src="assets/logo.png" alt="BookStore" class="auth-logo-icon">
+        <div>
+          <h1>BookStore</h1>
+          <p>Toko buku online terbaik</p>
+        </div>
+      </div>
+
+      <h2>Selamat Datang</h2>
+      <p class="auth-subtitle">Masuk ke akun Anda untuk melanjutkan</p>
+
+      <div id="alert" class="auth-alert"></div>
+
+      <form id="signinForm" autocomplete="off">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="login-email" placeholder="Email" autocomplete="off" readonly required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-field">
+            <input type="password" id="password" name="login-password" placeholder="Password" autocomplete="new-password" readonly required>
+            <button class="password-toggle" type="button" aria-label="Tampilkan password" aria-pressed="false"></button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember"> Ingat saya
+          </label>
+          <a href="#" style="color: var(--accent); font-weight: 600;">Lupa password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Masuk</button>
+      </form>
+
+      <p class="auth-footer">
+        Belum punya akun? <a href="signup.html?need=1">Daftar sekarang</a>
+      </p>
+
+      <div class="auth-flourish" aria-hidden="true">
+        <span></span>
+        <svg viewBox="0 0 36 36">
+          <path d="M6 8c6-3 10-2 12 1v18c-2-3-6-4-12-1V8z" fill="#efeaff" stroke="#6b5ce7" stroke-width="1.4"/>
+          <path d="M30 8c-6-3-10-2-12 1v18c2-3 6-4 12-1V8z" fill="#fff6e8" stroke="#f0a030" stroke-width="1.4"/>
+        </svg>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js?rev1045"></script>
+  <script>
+    const user = getCurrentUser();
+    if (user) {
+      window.location.href = user.role === 'admin' ? 'admin.html' : 'user.html';
+    }
+
+    const form = document.getElementById('signinForm');
+    const alertEl = document.getElementById('alert');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const unlockField = (input) => {
+      input.addEventListener('focus', () => input.removeAttribute('readonly'));
+    };
+    unlockField(emailInput);
+    unlockField(passwordInput);
+    const clearAutofill = () => {
+      const active = document.activeElement;
+      if (active === emailInput || active === passwordInput) return;
+      emailInput.value = '';
+      passwordInput.value = '';
+    };
+    window.addEventListener('load', clearAutofill);
+    let clearTicks = 0;
+    const clearTimer = setInterval(() => {
+      clearAutofill();
+      clearTicks += 1;
+      if (clearTicks >= 8) clearInterval(clearTimer);
+    }, 120);
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('registered') === '1') {
+      alertEl.className = 'auth-alert success';
+      alertEl.textContent = 'Akun berhasil dibuat. Silakan masuk.';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const result = await signIn(email, password);
+      if (result.success) {
+        alertEl.className = 'auth-alert success';
+        alertEl.textContent = 'Login berhasil! Mengalihkan...';
+        setTimeout(() => {
+          window.location.href = result.user.role === 'admin' ? 'admin.html' : 'user.html';
+        }, 800);
+      } else {
+        alertEl.className = 'auth-alert error';
+        alertEl.textContent = result.message;
+      }
+    });
+  </script>
+</body>
+</html>
+

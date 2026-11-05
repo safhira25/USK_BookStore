@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Pembayaran - BookStore</title>
+  <link rel="stylesheet" href="css/style.css?v=1029">
+</head>
+<body class="success-page">
+  <div class="success-backdrop">
+    <div class="success-card">
+      <div class="success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h1 id="successTitle">Selesaikan Transfer</h1>
+      <p class="success-message" id="successMessage">
+        Pesanan sudah dibuat.<br>
+        Transfer dulu, lalu unggah bukti TF di bawah.
+      </p>
+      <p class="success-email" id="successEmail"></p>
+      <p class="success-order hidden" id="successOrder"></p>
+      <p class="success-date" id="successDate"></p>
+      <div class="success-meta hidden" id="successMeta"></div>
+
+      <ol class="success-steps" id="successSteps">
+        <li>Transfer ke rekening sesuai detail, atas nama akun Anda</li>
+        <li>Ambil foto / screenshot bukti TF</li>
+        <li>Unggah di bawah, lalu klik Kirim Bukti TF</li>
+      </ol>
+
+      <div class="success-proof" id="successProofBox">
+        <h2>Unggah Bukti Bayar / TF</h2>
+        <p>Upload dilakukan setelah Anda transfer dari m-banking / ATM.</p>
+        <label class="proof-upload" for="proofInput">
+          <span>Pilih foto bukti TF</span>
+          <input type="file" id="proofInput" accept="image/*">
+        </label>
+        <p class="proof-hint" id="proofHint">Belum ada file dipilih.</p>
+        <div class="proof-preview hidden" id="proofPreviewWrap">
+          <img id="proofPreview" alt="Pratinjau bukti bayar">
+        </div>
+        <button type="button" class="success-btn success-btn-secondary" id="uploadProofBtn">Kirim Bukti TF</button>
+      </div>
+
+      <button type="button" class="success-btn" id="goBackBtn">Kembali</button>
+    </div>
+  </div>
+
+  <script src="js/auth.js?v=1045"></script>
+  <script src="js/data.js?v=1045"></script>
+  <script src="js/payment-success-page.js?v=1035"></script>
+</body>
+</html>
